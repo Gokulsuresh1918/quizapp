@@ -9,14 +9,24 @@ export type configType = {
   score: number;
 };
 const defaultConfig = {
-  numberOfQuestion: 10,
+  numberOfQuestion: 5,
   category: '',
   level: "",
   type: "",
   status: "",
   score: 0,
 };
-const useQuiz = create((set) => ({
+
+interface QuizState {
+  addLevel: Function;
+  addStatus:Function;
+  addCategory: Function;
+  numberOfQuestion:Function;
+  addType: Function;
+  addScore:Function;
+  config: configType
+ }
+const useQuiz = create<QuizState>((set) => ({
   config: { ...defaultConfig },
   addLevel: (level: string) =>
     set((state: { config: any }) => ({
@@ -30,9 +40,9 @@ const useQuiz = create((set) => ({
     set((state: { config: any }) => ({
       config: { ...state.config, status: status },
     })),
-  addScore: (score: number) =>
+  addScore: () =>
     set((state: { config: any }) => ({
-      config: { ...state.config, score: score },
+      config: { ...state.config, score: state.config.score+1 },
     })),
   addType: (type: string) =>
     set((state: { config: any }) => ({

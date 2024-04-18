@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
-import useQuiz from "@/app/store";
+import useQuiz from "@/app/_store";
 import React from "react";
 
 export default function Button() {
-  const addStatus = useQuiz(state => state.addStatus);
+  const addStatus = useQuiz((state) => state.addStatus);
+
   return (
     <button
       type="button"

@@ -1,5 +1,5 @@
 "use client";
-import useQuiz from "@/app/store";
+import useQuiz from "@/app/_store";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -40,7 +40,7 @@ export default function Dropdown() {
       <div className="px-7 py-4 w-1/3 mx-4">
         <DropdownMenu>
           <DropdownMenuTrigger className="flex outline-none justify-between w-full px-10 py-3 rounded-lg shadow-lg hover:bg-blue-400 hover:text-gray-100">
-            {config.level ? config.level : "LEVEL"} 
+            {config.level ? config.level : "LEVEL"}
             <ChevronDown />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
@@ -57,7 +57,7 @@ export default function Dropdown() {
       <div className="px-7 py-4 w-1/3 mx-4">
         <DropdownMenu>
           <DropdownMenuTrigger className="flex outline-none justify-between w-full px-10 py-3 rounded-lg shadow-lg hover:bg-blue-400 hover:text-gray-100">
-            {config.type ? config.type : "TYPE"} 
+            {config.type ? config.type : "TYPE"}
             <ChevronDown />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
