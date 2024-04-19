@@ -2,7 +2,10 @@ import { create } from "zustand";
 
 export type configType = {
   numberOfQuestion: number;
-  category:string,
+  category: {
+    id: number;
+    name: string;
+  };
   level: string;
   type: string;
   status: string;
@@ -10,7 +13,10 @@ export type configType = {
 };
 const defaultConfig = {
   numberOfQuestion: 5,
-  category: '',
+  category: {
+    id: 0,
+    name: "",
+  },
   level: "",
   type: "",
   status: "",
@@ -19,13 +25,13 @@ const defaultConfig = {
 
 interface QuizState {
   addLevel: Function;
-  addStatus:Function;
+  addStatus: Function;
   addCategory: Function;
-  numberOfQuestion:Function;
+  numberOfQuestion: Function;
   addType: Function;
-  addScore:Function;
-  config: configType
- }
+  addScore: Function;
+  config: configType;
+}
 const useQuiz = create<QuizState>((set) => ({
   config: { ...defaultConfig },
   addLevel: (level: string) =>
@@ -42,15 +48,15 @@ const useQuiz = create<QuizState>((set) => ({
     })),
   addScore: () =>
     set((state: { config: any }) => ({
-      config: { ...state.config, score: state.config.score+1 },
+      config: { ...state.config, score: state.config.score + 1 },
     })),
   addType: (type: string) =>
     set((state: { config: any }) => ({
       config: { ...state.config, type: type },
     })),
-  addCategory: (category: string) =>
+  addCategory: (id: number, name: string) =>
     set((state: { config: any }) => ({
-      config: { ...state.config, category: category },
+      config: { ...state.config, category: { id: id, name: name } },
     })),
 }));
 

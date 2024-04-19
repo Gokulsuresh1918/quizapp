@@ -1,6 +1,6 @@
 "use client";
 
-import useQuiz from "@/app/_store";
+import useQuiz from "../../../store";
 import React from "react";
 
 export default function Button() {

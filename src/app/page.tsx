@@ -2,7 +2,7 @@
 
 import Button from "@/components/Button";
 import Dropdown from "@/components/DropDownOptions";
-import useQuiz from "./_store";
+import useQuiz from "../../store";
 
 export default function Home() {
   const quizConfig = useQuiz((state) => state.config);
