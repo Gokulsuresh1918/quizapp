@@ -12,7 +12,7 @@ interface Question {
   correct_answer: any;
   answers: any[];
 }
-export default function quiz() {
+export default function Quiz() {
   const [question, setQuestion] = useState<Question[]>([]);
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
@@ -128,10 +128,10 @@ export default function quiz() {
             </h6>
             <button
               type="button"
-              onClick={() => window.location.reload}
+              onClick={() => window.location.reload()}
               className="  py-2.5 px-5 me-2 mb-2 text-lg font-bold text-yellow-700 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
-              Take Another QUIZ
+              Take Another Quiz
             </button>
           </div>
         )}
