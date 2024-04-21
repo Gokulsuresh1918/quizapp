@@ -5,6 +5,7 @@ import useQuiz from "../../../store";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Player } from "@lottiefiles/react-lottie-player";
+import Link from "next/link";
 
 interface Question {
   question: string;
@@ -68,6 +69,9 @@ export default function Quiz() {
     setQuestion([...remaingQuestion]);
     setAnswer("");
   };
+  const finalresult={
+    
+  }
   const checkAnswer = (answer: string) => {
     if (answer === question[0].correct_answer) {
       addScore(0);
@@ -76,99 +80,100 @@ export default function Quiz() {
   };
   return (
     <section className="flex flex-col justify-center items-center mt-10">
-      {question.length ? (
-        <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Question No
-          {question?.length ? (
-            <span className="text-blue-600 dark:text-blue-500">
-              {" "}
-              #{config.numberOfQuestion - question.length + 1}
-            </span>
-          ) : null}
-        </h1>
-      ) : null}
-
-      {loading && (
-        <div className="flex flex-col">
-          <Skeleton className="w-[600px] h-[60px] my-10 rounded-sm" />
-          <Skeleton className="w-[600px] h-[500px] rounded-sm" />
-        </div>
-      )}
-
-      {!loading && !!question.length && (
-        <p className="text-2xl">Score : {config.score}</p>
-      )}
-      <section className="shadow-2xl my-10 p-10 w-[90%] rounded-lg flex flex-col justify-center items-center shadow-blue-200">
-        <h1 className="mb-4 text-2xl text-center font-extrabold leading-none tracking-tight text-blue-600 dark:text-blue-500 md:text-3xl lg:text-3xl">
-          {question.length ? question[0].question : null}
-        </h1>
-
-        {!question.length && !loading && (
-          <div className="flex flex-col justify-center items-center">
-            {question.length&&!loading ? (
-              <Player
-                src="https://assets5.lottiefiles.com/packages/lf20_touohxv0.json"
-                className="player"
-                loop
-                autoplay
-                style={{ height: "400px", width: "400px" }}
-              />
-            ) : (
-              <Player
-                src="https://assets5.lottiefiles.com/packages/lf20_touohxv0.json"
-                className="player"
-                loop
-                autoplay
-                style={{ height: "600px", width: "600px" }}
-              />
-            )}
-
-            <h6 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-              YOUR SCORE :{config.score}
-            </h6>
-            <button
-              type="button"
-              onClick={() => window.location.reload()}
-              className="  py-2.5 px-5 me-2 mb-2 text-lg font-bold text-yellow-700 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            >
-              Take Another Quiz
-            </button>
-          </div>
-        )}
-
-        <div className="flex justify-center items-center my-10 flex-wrap w-[90%]]">
-          {question.length
-            ? question[0].answers.map((ans) => (
-                <button
-                  type="button"
-                  onClick={() => checkAnswer(ans)}
-                  key={ans}
-                  className={cn(
-                    " w-[33%] border-0 my-4 py-3.5 px-5 me-2 mb-2 text-lg font-medium text-gray-900 focus:outline-none bg-white rounded-full border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700",
+       {/* Adjust font size and spacing for smaller screens */}
+       <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+         Question No
+         {question?.length ? (
+           <span className="text-blue-600 dark:text-blue-500">
+             {" "}
+             #{config.numberOfQuestion - question.length + 1}
+           </span>
+         ) : null}
+       </h1>
+   
+       {loading && (
+         <div className="flex flex-col">
+           <Skeleton className="w-full h-[60px] my-10 rounded-sm" />
+           <Skeleton className="w-full h-[500px] rounded-sm" />
+         </div>
+       )}
+   
+       {!loading && !!question.length && (
+         <p className="text-2xl">Score : {config.score}</p>
+       )}
+       <section className="shadow-2xl my-10 p-10 w-full md:w-[90%] rounded-lg flex flex-col justify-center items-center shadow-blue-200">
+         <h1 className="mb-4 text-2xl text-center font-extrabold leading-none tracking-tight text-blue-600 dark:text-blue-500 md:text-3xl lg:text-3xl">
+           {question.length ? question[0].question : null}
+         </h1>
+   
+         {!question.length && !loading && (
+           <div className="flex flex-col justify-center items-center">
+             {question.length && !loading ? (
+               <Player
+                 src="https://assets5.lottiefiles.com/packages/lf20_touohxv0.json"
+                 className="player"
+                 loop
+                 autoplay
+                 style={{ height: "400px", width: "400px" }}
+               />
+             ) : (
+               <Player
+                 src="https://assets5.lottiefiles.com/packages/lf20_touohxv0.json"
+                 className="player"
+                 loop
+                 autoplay
+                 style={{ height: "600px", width: "600px" }}
+               />
+             )}
+   
+             <h6 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+               YOUR SCORE :{config.score}
+             </h6>
+             <button
+               type="button"
+               onClick={() => window.location.reload()}
+               className="py-2.5 px-5 me-2 mb-2 text-lg font-bold text-yellow-700 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+             >
+               Take Another Quiz
+             </button>
+          
+           </div>
+         )}
+   
+         <div className="flex justify-center items-center my-10 flex-wrap w-full">
+           {question.length
+             ? question[0].answers.map((ans) => (
+                 <button
+                   type="button"
+                   onClick={() => checkAnswer(ans)}
+                   key={ans}
+                   className={cn(
+                    "w-full sm:w-1/2 md:w-1/3 lg:w-1/4 border-0 my-4 py-3.5 px-5 me-2 mb-2 text-lg font-medium text-gray-900 focus:outline-none bg-white rounded-full border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700",
                     {
-                      "bg-red-400": answer && ans !== answer,
-                      "bg-green-500": answer && ans === answer,
-                      "hover:bg-red-500": answer && ans !== answer,
-                      "hover:bg-green-500": answer && ans === answer,
-                      "text-white-900": answer,
+                       "bg-red-400": answer && ans !== answer,
+                       "bg-green-500": answer && ans === answer,
+                       "hover:bg-red-500": answer && ans !== answer,
+                       "hover:bg-green-500": answer && ans === answer,
+                       "text-white-900": answer,
                     }
-                  )}
-                >
-                  {ans}
-                </button>
-              ))
-            : null}
-        </div>
-        {question.length ? (
-          <button
-            type="button"
-            onClick={() => handleNext()}
-            className=" w-[33%] py-2.5 px-5 me-2 mb-2 text-lg font-bold text-yellow-700 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          >
-            Next
-          </button>
-        ) : null}
-      </section>
+                   )}
+                 >
+                   {ans}
+                 </button>
+               ))
+             : null}
+         </div>
+         {question.length ? (
+           <button
+             type="button"
+             onClick={() => handleNext()}
+             className="w-full py-2.5 px-5 me-2 mb-2 text-lg font-bold text-yellow-700 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+           >
+             Next
+           </button>
+         ) : null}
+       </section>
     </section>
-  );
+   );
+   
 }
